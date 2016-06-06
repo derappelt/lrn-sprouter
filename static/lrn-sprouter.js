@@ -3,17 +3,17 @@
 class LrnSpRouter extends HTMLElement {
   
   _onChanged() {
-    const path = "/"+window.location.hash || "/";
+    const path = this._basePath + window.location.hash;
     const routes = Array.from(this._routes.keys());
     const route = routes.find(r => r.test(path));
-    const data = route.exec(path);
+    const data = (route) ? route.exec(path) : "";
     if (!route){
+      console.warn(`Route does not exists: ${path}`);
       return;
     }
     
     this._newView = this._routes.get(route);
     
-    console.log(this._animating);
     if(this._animating) {
       return;
     }
@@ -23,10 +23,7 @@ class LrnSpRouter extends HTMLElement {
         
     
     if(this._currentView){
-      console.log(this._currentView);
-      console.log(this._newView);
       if(this._currentView === this._newView) {
-        console.log('update');
         this._animating = false;
         return this._currentView.update(data);
       }
@@ -35,7 +32,6 @@ class LrnSpRouter extends HTMLElement {
     
     outViewPromise
       .then(_ => {
-        console.log('resolved');
         this._currentView = this._newView;
         this._animating = false;
        })
@@ -58,18 +54,19 @@ class LrnSpRouter extends HTMLElement {
       if (!view.route)
         return;
         
-      this._createRoute(new RegExp(view.route, 'i'), view);
+      this._createRoute(new RegExp('^' + this._basePath + view.route, 'i'), view);
     });
   }
   
   go(url){
-    window.history.pushState(null, null, url);
+    window.history.pushState(null, null, this._basePath+url);
     this._onChanged();
   }
   
   createdCallback(){
     this._onChanged = this._onChanged.bind(this);
     this._routes = new Map();
+    this._basePath = this.getAttribute('base') || "/";
   }
   
   attachedCallback() {
