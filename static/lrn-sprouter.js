@@ -59,7 +59,7 @@ class LrnSpRouter extends HTMLElement {
   }
   
   go(url){
-    window.history.pushState(null, null, url);
+    window.history.pushState(null, null, this._basePath+url);
     this._onChanged();
   }
   
