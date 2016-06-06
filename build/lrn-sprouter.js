@@ -2397,23 +2397,23 @@
 	  }
 
 	  (0, _createClass3.default)(LrnSpRouter, [{
-	    key: "_onChanged",
+	    key: '_onChanged',
 	    value: function _onChanged() {
 	      var _this2 = this;
 
-	      var path = "/" + window.location.hash || "/";
+	      var path = window.location.pathname + window.location.hash;
 	      var routes = (0, _from2.default)(this._routes.keys());
 	      var route = routes.find(function (r) {
 	        return r.test(path);
 	      });
 	      var data = route.exec(path);
+	      console.log(path);
 	      if (!route) {
 	        return;
 	      }
 
 	      this._newView = this._routes.get(route);
 
-	      console.log(this._animating);
 	      if (this._animating) {
 	        return;
 	      }
@@ -2422,10 +2422,7 @@
 	      var outViewPromise = _promise2.default.resolve();
 
 	      if (this._currentView) {
-	        console.log(this._currentView);
-	        console.log(this._newView);
 	        if (this._currentView === this._newView) {
-	          console.log('update');
 	          this._animating = false;
 	          return this._currentView.update(data);
 	        }
@@ -2433,7 +2430,6 @@
 	      }
 
 	      outViewPromise.then(function (_) {
-	        console.log('resolved');
 	        _this2._currentView = _this2._newView;
 	        _this2._animating = false;
 	      }).then(function (_) {
@@ -2441,19 +2437,19 @@
 	      });
 	    }
 	  }, {
-	    key: "_clearRoutes",
+	    key: '_clearRoutes',
 	    value: function _clearRoutes() {
 	      this._routes.clear();
 	    }
 	  }, {
-	    key: "_createRoute",
+	    key: '_createRoute',
 	    value: function _createRoute(route, view) {
-	      if (this._routes.has(route)) return console.warn("Route already exists: " + route);
+	      if (this._routes.has(route)) return console.warn('Route already exists: ' + route);
 
 	      this._routes.set(route, view);
 	    }
 	  }, {
-	    key: "_createRoutes",
+	    key: '_createRoutes',
 	    value: function _createRoutes() {
 	      var _this3 = this;
 
@@ -2464,19 +2460,19 @@
 	      });
 	    }
 	  }, {
-	    key: "go",
+	    key: 'go',
 	    value: function go(url) {
 	      window.history.pushState(null, null, url);
 	      this._onChanged();
 	    }
 	  }, {
-	    key: "createdCallback",
+	    key: 'createdCallback',
 	    value: function createdCallback() {
 	      this._onChanged = this._onChanged.bind(this);
 	      this._routes = new _map2.default();
 	    }
 	  }, {
-	    key: "attachedCallback",
+	    key: 'attachedCallback',
 	    value: function attachedCallback() {
 	      window.addEventListener('popstate', this._onChanged);
 	      this._clearRoutes();
@@ -2484,7 +2480,7 @@
 	      this._onChanged();
 	    }
 	  }, {
-	    key: "detachedCallback",
+	    key: 'detachedCallback',
 	    value: function detachedCallback() {
 	      window.removeEventListener('popstate', this._onChanged);
 	    }

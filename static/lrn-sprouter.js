@@ -3,17 +3,17 @@
 class LrnSpRouter extends HTMLElement {
   
   _onChanged() {
-    const path = "/"+window.location.hash || "/";
+    const path = window.location.pathname + window.location.hash;
     const routes = Array.from(this._routes.keys());
     const route = routes.find(r => r.test(path));
     const data = route.exec(path);
+    console.log(path);
     if (!route){
       return;
     }
     
     this._newView = this._routes.get(route);
     
-    console.log(this._animating);
     if(this._animating) {
       return;
     }
@@ -23,10 +23,7 @@ class LrnSpRouter extends HTMLElement {
         
     
     if(this._currentView){
-      console.log(this._currentView);
-      console.log(this._newView);
       if(this._currentView === this._newView) {
-        console.log('update');
         this._animating = false;
         return this._currentView.update(data);
       }
@@ -35,7 +32,6 @@ class LrnSpRouter extends HTMLElement {
     
     outViewPromise
       .then(_ => {
-        console.log('resolved');
         this._currentView = this._newView;
         this._animating = false;
        })
