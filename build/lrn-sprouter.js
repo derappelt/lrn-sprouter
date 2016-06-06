@@ -2462,7 +2462,7 @@
 	  }, {
 	    key: 'go',
 	    value: function go(url) {
-	      window.history.pushState(null, null, url);
+	      window.history.pushState(null, null, this._basePath + url);
 	      this._onChanged();
 	    }
 	  }, {
@@ -2945,7 +2945,7 @@
 
 	function spLinkClick(evt) {
 	  evt.preventDefault();
-	  router.go(evt.target.href);
+	  router.go(evt.target.hash || "");
 	}
 	(0, _from2.default)(document.querySelectorAll('a'), function (link) {
 	  if (new RegExp(window.location.origin + '/($|#.*)', 'i').test(link.href)) {
