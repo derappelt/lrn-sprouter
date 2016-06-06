@@ -2401,7 +2401,7 @@
 	    value: function _onChanged() {
 	      var _this2 = this;
 
-	      var path = window.location.pathname + window.location.hash;
+	      var path = window.location.pathname + window.location.hash || "/";
 	      var routes = (0, _from2.default)(this._routes.keys());
 	      var route = routes.find(function (r) {
 	        return r.test(path);

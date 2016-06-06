@@ -3,7 +3,7 @@
 class LrnSpRouter extends HTMLElement {
   
   _onChanged() {
-    const path = window.location.pathname + window.location.hash;
+    const path = window.location.pathname + window.location.hash || "/";
     const routes = Array.from(this._routes.keys());
     const route = routes.find(r => r.test(path));
     const data = route.exec(path);
