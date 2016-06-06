@@ -1,0 +1,58 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+lrn-spview{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transform: scale(0.95);
+  -moz-transform: scale(0.95);
+  transform: scale(0.95);
+  -webkit-transition: transform 0.3s cubic-bezier(0,0,0.3,1),
+    opacity 0.3s cubic-bezier(0,0,0.3,1);
+  -moz-transition: transform 0.3s cubic-bezier(0,0,0.3,1),
+    opacity 0.3s cubic-bezier(0,0,0.3,1);
+  transition: transform 0.3s cubic-bezier(0,0,0.3,1),
+    opacity 0.3s cubic-bezier(0,0,0.3,1);
+}
+
+lrn-spview.visible{
+  -webkit-transform: none;
+  -moz-transform: none;
+  transform: none;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+nav{
+  position: fixed;
+  z-index: 1;
+  right: 20px;
+  top: 20vh;
+}
+
+.view-home{
+  background-color: red;
+}
+
+.view-about{
+  background-color: orangered;
+}
+
+.view-contact{
+  background-color: yellow;
+}
+
+.view-misc{
+  background-color: snow;
+}

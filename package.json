@@ -1,0 +1,32 @@
+{
+  "name": "lrn-sprouter",
+  "version": "0.0.1",
+  "description": "none",
+  "main": "index.html",
+  "scripts": {
+    "start": "node dev-server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derappelt/lrn-sprouter.git"
+  },
+  "author": "Simon Appelt <aipt32@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/derappelt/lrn-sprouter/issues"
+  },
+  "homepage": "https://github.com/derappelt/lrn-sprouter#readme",
+  "devDependencies": {
+    "babel-core": "^6.9.1",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.9.1",
+    "babel-runtime": "^6.9.2"
+  }
+}
