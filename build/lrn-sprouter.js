@@ -2401,14 +2401,14 @@
 	    value: function _onChanged() {
 	      var _this2 = this;
 
-	      var path = window.location.pathname + window.location.hash || "/";
+	      var path = this._basePath + window.location.hash;
 	      var routes = (0, _from2.default)(this._routes.keys());
 	      var route = routes.find(function (r) {
 	        return r.test(path);
 	      });
-	      var data = route.exec(path);
-	      console.log(path);
+	      var data = route ? route.exec(path) : "";
 	      if (!route) {
+	        console.warn('Route does not exists: ' + path);
 	        return;
 	      }
 
@@ -2456,7 +2456,7 @@
 	      (0, _from2.default)(document.querySelectorAll('lrn-spview'), function (view) {
 	        if (!view.route) return;
 
-	        _this3._createRoute(new RegExp(view.route, 'i'), view);
+	        _this3._createRoute(new RegExp('^' + _this3._basePath + view.route, 'i'), view);
 	      });
 	    }
 	  }, {
@@ -2470,6 +2470,7 @@
 	    value: function createdCallback() {
 	      this._onChanged = this._onChanged.bind(this);
 	      this._routes = new _map2.default();
+	      this._basePath = this.getAttribute('base') || "/";
 	    }
 	  }, {
 	    key: 'attachedCallback',

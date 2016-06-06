@@ -11,17 +11,17 @@
   <nav>
     <ul>
       <li><a href="/">Home</a></li>
-      <li><a href="/#about/">About</a></li>
+      <li><a href="/#abot/">About</a></li>
       <li><a href="/#contact/">Contact</a></li>
       <li><a href="/#misc/">Misc</a></li>
     </ul>
   </nav>
-  <lrn-spview class="view-home" route="^/$">Home</lrn-spview>
-  <lrn-spview class="view-about" route="^/#about/(.*)">About</lrn-spview>
-  <lrn-spview class="view-contact" route="^/#contact/(.*)">Contact</lrn-spview>
-  <lrn-spview class="view-misc" route="^/#misc/(.*)">Misc</lrn-spview>
+  <lrn-spview class="view-home" route="">Home</lrn-spview>
+  <lrn-spview class="view-about" route="#about/(.*)">About</lrn-spview>
+  <lrn-spview class="view-contact" route="#contact/(.*)">Contact</lrn-spview>
+  <lrn-spview class="view-misc" route="#misc/(.*)">Misc</lrn-spview>
 
-  <lrn-sprouter></lrn-sprouter>
+  <lrn-sprouter base="/lrn-sprouter/"></lrn-sprouter>
   <script>
     Array.prototype.find = function (predicate, thisValue) {
         var arr = Object(this);
