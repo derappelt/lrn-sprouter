@@ -1,5 +1,4 @@
 if(!Array.prototype.find){
-  console.log('Array Find Fix');
   Array.prototype.find = function (predicate, thisValue) {
     var arr = Object(this);
     if (typeof predicate !== 'function') {
@@ -15,6 +14,4 @@ if(!Array.prototype.find){
     }
     return undefined;  // (2)
   }
-} else {
-  console.log('No Fix Required');
 }
