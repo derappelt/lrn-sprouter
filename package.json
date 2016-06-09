@@ -28,6 +28,7 @@
   "dependencies": {
     "babel-polyfill": "^6.9.1",
     "babel-runtime": "^6.9.2",
-    "webcomponents.js": "^0.7.22"
+    "webcomponents.js": "^0.7.22",
+    "whatwg-fetch": "^1.0.0"
   }
 }
